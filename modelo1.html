@@ -26,14 +26,14 @@
   .gold{color:var(--dourado)}
 
   /* NAV */
-  header{position:fixed;top:0;left:0;width:100%;z-index:50;transition:.3s;padding:18px 0}
+  header{position:fixed;top:0;left:0;width:100%;z-index:50;transition:.3s;padding:18px 0;background:linear-gradient(180deg,rgba(40,8,16,.65),rgba(40,8,16,0))}
   header.scrolled{background:var(--vinho-esc);box-shadow:0 4px 24px rgba(0,0,0,.25);padding:12px 0}
   nav{display:flex;align-items:center;justify-content:space-between}
   .logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:3px;color:#fff}
   .logo small{display:block;font-family:'Jost';font-size:.5rem;letter-spacing:4px;color:var(--rose);font-weight:300}
-  .nav-links{display:flex;gap:34px}
-  .nav-links a{color:#f3e9e4;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;transition:.2s}
-  .nav-links a:hover{color:var(--dourado)}
+  .nav-links{display:flex;gap:16px}
+  .nav-links a{color:#fff;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;transition:.25s;padding:11px 26px;border:1.5px solid var(--dourado);border-radius:30px;background:rgba(62,16,31,.5);backdrop-filter:blur(6px)}
+  .nav-links a:hover{background:var(--dourado);color:var(--vinho-esc);box-shadow:0 8px 22px rgba(199,160,107,.5);transform:translateY(-2px)}
   .menu-btn{display:none;font-size:1.6rem;color:#fff;background:none;border:0;cursor:pointer}
 
   /* HERO */
@@ -43,8 +43,8 @@
   .hero h1{color:#fff;font-size:4.2rem;margin-bottom:24px}
   .hero h1 span{color:var(--dourado);font-style:italic}
   .hero p{color:#e8d6cf;font-size:1.05rem;max-width:440px;margin-bottom:38px}
-  .hero-img{background:url('assets/foto-gabriely.jpeg') center/cover;position:relative}
-  .hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--vinho),transparent 35%)}
+  .hero-img{background:url('assets/gaby-vinho.jpg') no-repeat center/76%;position:relative}
+  .hero-img::after{content:"";position:absolute;inset:0;background:none}
   .btn{display:inline-block;padding:16px 38px;border-radius:2px;letter-spacing:2px;font-size:.8rem;text-transform:uppercase;transition:.25s;cursor:pointer}
   .btn-gold{background:var(--dourado);color:#fff}
   .btn-gold:hover{background:#b08a55}
@@ -61,7 +61,7 @@
   /* SOBRE */
   .sobre{background:var(--nude)}
   .sobre-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
-  .sobre-img{aspect-ratio:4/5;background:url('assets/foto-gabriely.jpeg') center/cover;border:8px solid #fff;box-shadow:0 20px 50px rgba(92,26,46,.25)}
+  .sobre-img{aspect-ratio:4/5;background:url('assets/gaby-vinho.jpg') center/cover;border:8px solid #fff;box-shadow:0 20px 50px rgba(92,26,46,.25)}
   .sobre h2{font-size:2.6rem;color:var(--vinho);margin-bottom:10px}
   .sobre .sub{color:var(--dourado);letter-spacing:3px;text-transform:uppercase;font-size:.8rem;margin-bottom:24px}
   .sobre p{margin-bottom:18px}
@@ -106,8 +106,8 @@
 
   @media(max-width:900px){
     .hero{grid-template-columns:1fr}
-    .hero-img{min-height:300px;order:-1}
-    .hero-img::after{background:linear-gradient(0deg,var(--vinho),transparent 50%)}
+    .hero-img{min-height:420px;order:-1;background-size:auto 90%}
+    .hero-img::after{background:none}
     .hero h1{font-size:3rem}
     .hero-text{padding:110px 30px 50px}
     .sobre-grid,.contato-grid{grid-template-columns:1fr;gap:40px}
