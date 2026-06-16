@@ -1,0 +1,11 @@
+# Logs do servidor/túnel local
+*.log
+server.log
+tunnel.log
+
+# Binários
+cloudflared.exe
+
+# Sistema
+Thumbs.db
+.DS_Store

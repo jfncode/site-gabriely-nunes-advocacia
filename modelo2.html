@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriely Nunes — Advocacia e Consultoria Jurídica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vinho:#5C1A2E;
+    --vinho-esc:#3E101F;
+    --rose:#C99A8B;
+    --rose-cl:#E7D3CB;
+    --dourado:#C7A06B;
+    --offwhite:#FBF7F4;
+    --texto:#3a2e31;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Poppins',sans-serif;color:var(--texto);background:var(--offwhite);line-height:1.8;font-weight:300}
+  h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.15;font-weight:600}
+  a{text-decoration:none;color:inherit}
+  .container{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  /* NAV */
+  header{position:fixed;top:0;width:100%;z-index:50;padding:22px 0;transition:.3s}
+  header.scrolled{background:rgba(251,247,244,.96);backdrop-filter:blur(8px);box-shadow:0 2px 20px rgba(92,26,46,.08);padding:14px 0}
+  nav{display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Playfair Display';font-size:1.4rem;letter-spacing:2px;color:var(--vinho)}
+  .logo small{display:block;font-family:'Poppins';font-size:.5rem;letter-spacing:3px;color:var(--dourado);font-weight:300}
+  header.scrolled .logo,header.scrolled .nav-links a{color:var(--vinho)}
+  .nav-links{display:flex;gap:36px;align-items:center}
+  .nav-links a{color:var(--vinho);font-size:.85rem;letter-spacing:1px;transition:.2s}
+  .nav-links a:hover{color:var(--dourado)}
+  .nav-cta{background:var(--vinho);color:#fff!important;padding:11px 26px;border-radius:30px;font-size:.8rem}
+  .nav-cta:hover{background:var(--dourado)}
+  .menu-btn{display:none;font-size:1.6rem;color:var(--vinho);background:none;border:0;cursor:pointer}
+
+  /* HERO */
+  .hero{padding:200px 0 120px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;top:-10%;right:-8%;width:520px;height:520px;background:var(--rose-cl);border-radius:50%;opacity:.5;z-index:0}
+  .hero .container{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+  .hero .eyebrow{display:inline-block;background:#fff;color:var(--vinho);padding:8px 20px;border-radius:30px;letter-spacing:2px;text-transform:uppercase;font-size:.72rem;margin-bottom:26px;box-shadow:0 6px 20px rgba(92,26,46,.08)}
+  .hero h1{font-size:4rem;color:var(--vinho);margin-bottom:24px}
+  .hero h1 em{color:var(--dourado);font-style:italic}
+  .hero p{font-size:1.08rem;color:#6b5a5f;max-width:480px;margin-bottom:36px}
+  .hero-photo{position:relative}
+  .hero-photo img{width:100%;border-radius:200px 200px 24px 24px;box-shadow:0 30px 60px rgba(92,26,46,.25)}
+  .badge{position:absolute;bottom:30px;left:-30px;background:#fff;padding:18px 26px;border-radius:16px;box-shadow:0 14px 40px rgba(92,26,46,.18)}
+  .badge b{font-family:'Playfair Display';font-size:1.7rem;color:var(--vinho);display:block}
+  .badge span{font-size:.78rem;color:var(--dourado)}
+
+  .btn{display:inline-block;padding:15px 36px;border-radius:30px;letter-spacing:1px;font-size:.85rem;transition:.25s;cursor:pointer}
+  .btn-primary{background:var(--vinho);color:#fff}
+  .btn-primary:hover{background:var(--dourado);transform:translateY(-2px)}
+  .btn-ghost{color:var(--vinho);border:1px solid var(--rose);margin-left:10px}
+  .btn-ghost:hover{background:var(--rose);color:#fff}
+
+  section{padding:100px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 64px}
+  .sec-head .tag{color:var(--dourado);letter-spacing:4px;text-transform:uppercase;font-size:.76rem;font-weight:500}
+  .sec-head h2{font-size:2.7rem;color:var(--vinho);margin:14px 0}
+  .sec-head p{color:#7a686d}
+
+  /* AREAS */
+  .areas{background:#fff}
+  .areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .acard{padding:40px 30px;border-radius:20px;background:var(--offwhite);transition:.3s;border:1px solid transparent}
+  .acard:hover{background:#fff;box-shadow:0 18px 44px rgba(92,26,46,.12);border-color:var(--rose-cl);transform:translateY(-6px)}
+  .acard .ic{width:60px;height:60px;border-radius:16px;background:var(--rose-cl);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:22px}
+  .acard h3{font-size:1.4rem;color:var(--vinho);margin-bottom:10px}
+  .acard p{font-size:.93rem;color:#7a686d}
+
+  /* STATS / SOBRE */
+  .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .sobre-grid img{width:100%;border-radius:24px;box-shadow:0 24px 50px rgba(92,26,46,.2)}
+  .sobre h2{font-size:2.6rem;color:var(--vinho);margin-bottom:20px}
+  .sobre .tag{color:var(--dourado);letter-spacing:4px;text-transform:uppercase;font-size:.76rem;font-weight:500}
+  .sobre p{color:#6b5a5f;margin-bottom:18px}
+  .checks{list-style:none;margin-top:10px}
+  .checks li{padding:8px 0 8px 32px;position:relative;color:var(--texto)}
+  .checks li::before{content:"\2713";position:absolute;left:0;color:var(--dourado);font-weight:600}
+
+  /* CTA STRIP */
+  .cta{background:linear-gradient(135deg,var(--vinho),var(--vinho-esc));text-align:center;color:#fff;border-radius:0}
+  .cta h2{font-size:2.6rem;color:#fff;margin-bottom:16px}
+  .cta h2 em{color:var(--dourado);font-style:italic}
+  .cta p{color:#e8d6cf;max-width:520px;margin:0 auto 32px}
+  .cta .btn-primary{background:var(--dourado)}
+  .cta .btn-primary:hover{background:#fff;color:var(--vinho)}
+
+  /* CONTATO */
+  .contato-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px}
+  .info-card{background:#fff;border-radius:20px;padding:34px;display:flex;gap:18px;align-items:center;margin-bottom:18px;box-shadow:0 10px 30px rgba(92,26,46,.06)}
+  .info-card .ic{font-size:1.6rem;color:var(--dourado)}
+  .info-card h4{font-family:'Poppins';font-weight:500;color:var(--vinho);font-size:.95rem}
+  .info-card p{color:#7a686d;font-size:.92rem}
+  .form{background:#fff;padding:44px;border-radius:24px;box-shadow:0 20px 50px rgba(92,26,46,.1)}
+  .form input,.form textarea{width:100%;padding:15px 18px;margin-bottom:16px;border:1px solid #ecdfd9;border-radius:12px;font-family:'Poppins';background:var(--offwhite);font-size:.95rem}
+  .form textarea{height:130px;resize:vertical}
+
+  .wa{position:fixed;bottom:26px;right:26px;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:0 6px 20px rgba(0,0,0,.3);z-index:60}
+  .wa:hover{transform:scale(1.1)}
+
+  footer{background:var(--vinho-esc);color:#d9c4bc;text-align:center;padding:56px 0}
+  footer .logo{color:#fff;margin-bottom:16px}
+  footer .logo small{color:var(--rose)}
+  footer .socials{display:flex;gap:24px;justify-content:center;margin:18px 0}
+  footer .socials a{color:var(--rose)}
+  footer .socials a:hover{color:var(--dourado)}
+  footer .copy{font-size:.78rem;color:#8a6f70}
+
+  @media(max-width:900px){
+    .hero{padding:150px 0 80px}
+    .hero .container,.sobre-grid,.contato-grid{grid-template-columns:1fr;gap:46px}
+    .hero h1{font-size:2.9rem}
+    .hero-photo{max-width:380px;margin:0 auto}
+    .areas-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+    .menu-btn{display:block}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <nav>
+      <div class="logo">Gabriely Nunes<small>ADVOCACIA E CONSULTORIA JURÍDICA</small></div>
+      <div class="nav-links">
+        <a href="#areas">Atuação</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+        <a href="https://wa.me/5517982263555" class="nav-cta">Agendar</a>
+      </div>
+      <button class="menu-btn">&#9776;</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div>
+      <span class="eyebrow">Direito de Família e Sucessões</span>
+      <h1>Sua família protegida por <em>quem se importa</em>.</h1>
+      <p>Atendimento jurídico humano, próximo e estratégico em São José do Rio Preto. Cada caso é tratado com a atenção e o cuidado que ele merece.</p>
+      <div>
+        <a href="https://wa.me/5517982263555" class="btn btn-primary">Agendar consulta</a>
+        <a href="#areas" class="btn btn-ghost">Ver áreas</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="assets/foto-gabriely.jpeg" alt="Gabriely Nunes">
+      <div class="badge"><b>Família</b><span>& Sucessões</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AREAS -->
+<section class="areas" id="areas">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">Áreas de Atuação</div>
+      <h2>Como posso te ajudar</h2>
+      <p>Atuação especializada em Direito de Família e Sucessões, com foco no acolhimento e na defesa dos seus direitos.</p>
+    </div>
+    <div class="areas-grid">
+      <div class="acard"><div class="ic">&#128218;</div><h3>Inventário</h3><p>Inventários judiciais e extrajudiciais conduzidos com agilidade e segurança.</p></div>
+      <div class="acard"><div class="ic">&#128141;</div><h3>Divórcio</h3><p>Consensual ou litigioso, sempre com sigilo e respeito ao seu momento.</p></div>
+      <div class="acard"><div class="ic">&#127968;</div><h3>Partilha de Bens</h3><p>Divisão justa do patrimônio, protegendo o que é seu por direito.</p></div>
+      <div class="acard"><div class="ic">&#129309;</div><h3>Alimentos</h3><p>Fixação, revisão e execução de pensão conforme necessidade e possibilidade.</p></div>
+      <div class="acard"><div class="ic">&#128118;</div><h3>Guarda</h3><p>Guarda e convivência guiadas pelo melhor interesse da criança.</p></div>
+      <div class="acard"><div class="ic">&#9878;</div><h3>Alienação Parental</h3><p>Prevenção e enfrentamento, protegendo o vínculo familiar saudável.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="container sobre-grid">
+    <img src="assets/foto-gabriely.jpeg" alt="Gabriely Nunes">
+    <div>
+      <div class="tag">Quem sou</div>
+      <h2>Dra. Gabriely Nunes</h2>
+      <p>Advogada apaixonada por Direito de Família, com uma atuação que une técnica jurídica e sensibilidade humana. Acredito que cada cliente merece ser ouvido e orientado com clareza e empatia.</p>
+      <ul class="checks">
+        <li>Atendimento personalizado e sigiloso</li>
+        <li>Linguagem clara, sem juridiquês</li>
+        <li>Foco no melhor interesse da criança e da família</li>
+        <li>Acompanhamento próximo em todas as etapas</li>
+      </ul>
+      <a href="#contato" class="btn btn-primary" style="margin-top:24px">Fale comigo</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>Cada caso deve ser analisado <em>individualmente</em>.</h2>
+    <p>Não enfrente um momento delicado sozinho(a). Agende uma conversa e entenda seus direitos com segurança.</p>
+    <a href="https://wa.me/5517982263555" class="btn btn-primary">Falar no WhatsApp</a>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="container">
+    <div class="sec-head">
+      <div class="tag">Contato</div>
+      <h2>Vamos conversar</h2>
+    </div>
+    <div class="contato-grid">
+      <div>
+        <div class="info-card"><div class="ic">&#128205;</div><div><h4>Localização</h4><p>São José do Rio Preto - SP</p></div></div>
+        <div class="info-card"><div class="ic">&#128241;</div><div><h4>WhatsApp / Telefone</h4><p>(17) 98226-3555</p></div></div>
+        <div class="info-card"><div class="ic">&#128247;</div><div><h4>Instagram</h4><p>@gabrielynuness.adv</p></div></div>
+      </div>
+      <div class="form">
+        <input type="text" placeholder="Seu nome">
+        <input type="text" placeholder="Seu telefone / WhatsApp">
+        <textarea placeholder="Conte brevemente sobre seu caso..."></textarea>
+        <button class="btn btn-primary" style="width:100%;border:0">Enviar mensagem</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="https://wa.me/5517982263555" class="wa" title="WhatsApp">&#9742;</a>
+
+<footer>
+  <div class="container">
+    <div class="logo">Gabriely Nunes<small>ADVOCACIA E CONSULTORIA JURÍDICA</small></div>
+    <div class="socials">
+      <a href="https://instagram.com/gabrielynuness.adv">Instagram</a>
+      <a href="https://wa.me/5517982263555">WhatsApp</a>
+    </div>
+    <p class="copy">© 2026 Gabriely Nunes Advocacia · São José do Rio Preto - SP · OAB/SP</p>
+  </div>
+</footer>
+
+<script>
+  const header=document.getElementById('header');
+  window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>60));
+  document.querySelector('.menu-btn').addEventListener('click',()=>{
+    const n=document.querySelector('.nav-links');
+    n.style.display=n.style.display==='flex'?'none':'flex';
+    n.style.flexDirection='column';n.style.position='absolute';n.style.top='62px';n.style.right='24px';
+    n.style.background='#fff';n.style.padding='22px 28px';n.style.borderRadius='14px';n.style.boxShadow='0 14px 40px rgba(92,26,46,.15)';
+  });
+</script>
+</body>
+</html>
