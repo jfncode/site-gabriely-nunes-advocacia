@@ -9,3 +9,7 @@ cloudflared.exe
 # Sistema
 Thumbs.db
 .DS_Store
+
+# Dependências do coletor de notícias (tools/)
+node_modules/
+tools/node_modules/

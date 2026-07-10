@@ -141,6 +141,28 @@
   .strip p{color:var(--txt-dark-mut);font-size:.95rem}
   .strip-feats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 
+  /* ---------- NOTÍCIAS ---------- */
+  .news{position:relative;background:
+      radial-gradient(90% 120% at 0% 0%, rgba(120,40,60,.5), transparent 55%),
+      var(--vinho-esc);color:var(--txt-cream);padding:84px 0;overflow:hidden}
+  .news::before{content:"";position:absolute;inset:0;background:
+      radial-gradient(1.5px 1.5px at 20% 30%, rgba(230,207,150,.35), transparent),
+      radial-gradient(1.5px 1.5px at 75% 60%, rgba(230,207,150,.28), transparent),
+      radial-gradient(2px 2px at 88% 25%, rgba(230,207,150,.3), transparent);pointer-events:none}
+  .news-head{position:relative;text-align:center;margin-bottom:38px}
+  .news-head h2{color:var(--cream);font-size:2.4rem;margin-top:6px}
+  .news-grid{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .news-card{display:flex;flex-direction:column;gap:12px;background:linear-gradient(180deg,var(--vinho2),var(--vinho));border:1px solid rgba(230,207,150,.32);border-radius:8px;padding:24px 22px;transition:.28s;min-height:206px}
+  .news-card:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(0,0,0,.4);border-color:var(--gold)}
+  .news-src{align-self:flex-start;color:var(--gold-cl);border:1px solid rgba(230,207,150,.45);border-radius:30px;padding:3px 12px;letter-spacing:1.5px;text-transform:uppercase;font-size:.6rem}
+  .news-card h3{color:var(--cream);font-size:1.28rem;line-height:1.24;font-weight:600}
+  .news-date{color:var(--txt-mut);font-size:.72rem;letter-spacing:.5px}
+  .news-more{margin-top:auto;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;font-size:.66rem;transition:.2s}
+  .news-card:hover .news-more{color:var(--gold-cl)}
+  .news-foot{position:relative;text-align:center;margin-top:30px;color:var(--txt-mut);font-size:.74rem;letter-spacing:.4px}
+  @media(max-width:1080px){.news-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:720px){.news-grid{grid-template-columns:1fr}.news-head h2{font-size:2rem}}
+
   /* ---------- RODAPÉ CTA ---------- */
   footer{position:relative;background:
       radial-gradient(80% 120% at 100% 0%, rgba(120,40,60,.5), transparent 55%),
@@ -254,6 +276,7 @@
       <a href="#sobre">Sobre</a>
       <a href="#areas">Áreas de Atuação</a>
       <a href="#atendimento">Atendimento</a>
+      <a href="#noticias">Notícias</a>
       <a href="#contato">Contato</a>
     </nav>
     <a href="#contato" class="btn-gold nav-cta">
@@ -355,6 +378,20 @@
   </div>
 </section>
 
+<!-- ============ NOTÍCIAS ============ -->
+<section class="news" id="noticias">
+  <div class="container">
+    <div class="news-head">
+      <div class="eyebrow">Notícias Jurídicas <span class="spark">&#10022;</span></div>
+      <h2>Fique por dentro do Direito</h2>
+    </div>
+    <div class="news-grid" id="news-grid">
+      <!-- Preenchido automaticamente a partir de assets/news.json (atualizado 2x/dia) -->
+    </div>
+    <p class="news-foot">Conteúdo de terceiros (ConJur e Direito News) — as matérias abrem no site de origem.</p>
+  </div>
+</section>
+
 <!-- ============ RODAPÉ CTA ============ -->
 <footer id="contato">
   <div class="container footer-grid">
@@ -392,6 +429,32 @@
     const open=m.style.display==='flex';
     m.style.cssText=open?'':'display:flex;flex-direction:column;position:absolute;top:64px;right:22px;background:var(--vinho-esc);padding:20px 26px;border-radius:10px;gap:16px;box-shadow:0 14px 40px rgba(0,0,0,.4)';
   });
+
+  /* ---- Notícias jurídicas (assets/news.json, atualizado 2x/dia pelo robô) ---- */
+  (async function(){
+    const grid=document.getElementById('news-grid');
+    const sec=document.getElementById('noticias');
+    if(!grid) return;
+    const fmt=(iso)=>{const d=new Date(iso);return isNaN(d)?'':d.toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});};
+    try{
+      const r=await fetch('assets/news.json',{cache:'no-cache'});
+      if(!r.ok) throw 0;
+      const data=await r.json();
+      const items=(data&&Array.isArray(data.items))?data.items:[];
+      const valid=items.filter(it=>it&&it.title&&/^https?:\/\//i.test(it.link||''));
+      if(!valid.length) throw 0;
+      grid.textContent='';
+      for(const it of valid){
+        const a=document.createElement('a');
+        a.className='news-card';a.href=it.link;a.target='_blank';a.rel='noopener nofollow';
+        const src=document.createElement('span');src.className='news-src';src.textContent=it.source||'Notícia';
+        const h=document.createElement('h3');h.textContent=it.title;
+        const dt=document.createElement('span');dt.className='news-date';dt.textContent=fmt(it.date);
+        const more=document.createElement('span');more.className='news-more';more.textContent='Ler matéria →';
+        a.append(src,h,dt,more);grid.appendChild(a);
+      }
+    }catch(e){ if(sec) sec.style.display='none'; }
+  })();
 </script>
 </body>
 </html>

@@ -1,0 +1,51 @@
+name: Atualizar notícias jurídicas
+
+# Roda 2x/dia e também pode ser disparado manualmente na aba "Actions".
+on:
+  schedule:
+    # Horários em UTC. Brasil (UTC-3): 09:00 e 18:00.
+    - cron: '0 12 * * *'
+    - cron: '0 21 * * *'
+  workflow_dispatch:
+
+# Permite que a Action faça commit do news.json atualizado.
+permissions:
+  contents: write
+
+# Evita execuções sobrepostas.
+concurrency:
+  group: news-update
+  cancel-in-progress: false
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências
+        working-directory: tools
+        run: npm ci
+
+      - name: Coletar notícias (gera assets/news.json)
+        working-directory: tools
+        run: node fetch-news.mjs
+
+      - name: Commit se houver mudança
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain assets/news.json)" ]]; then
+            git add assets/news.json
+            git commit -m "chore(news): atualiza notícias jurídicas [skip ci]"
+            git push
+            echo "✅ news.json atualizado e publicado."
+          else
+            echo "ℹ️ Sem mudanças no news.json."
+          fi

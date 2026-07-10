@@ -1,0 +1,13 @@
+{
+  "name": "gabriely-news-fetcher",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Coletor de notícias jurídicas (RSS) para o site gabrielynunes.adv.br",
+  "scripts": {
+    "fetch": "node fetch-news.mjs"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.5.0"
+  }
+}
