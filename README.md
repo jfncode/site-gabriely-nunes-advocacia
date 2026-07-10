@@ -14,7 +14,7 @@ Landing page (one-page) para **Gabriely Nunes — Advocacia e Consultoria Juríd
 
 - **Cores:** vinho/bordô `#5C1A2E`, rosé `#C99A8B`, dourado `#C7A06B`, off-white `#FBF7F4`
 - **Áreas de atuação:** Inventário, Divórcio, Partilha de Bens, Alimentos, Guarda, Alienação Parental
-- **Contato:** (17) 98226-3555 · [@gabrielynuness.adv](https://instagram.com/gabrielynuness.adv)
+- **Contato:** (17) 99199-9006 · [@gabrielynuness.adv](https://instagram.com/gabrielynuness.adv)
 
 ## 🚀 Como rodar localmente
 
